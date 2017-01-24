@@ -1,0 +1,57 @@
+
+forloop:     file format elf32-i386
+
+
+Disassembly of section .init:
+
+0804846d <main>:
+ 804846d:	55                   	push   %ebp
+ 804846e:	89 e5                	mov    %esp,%ebp
+ 8048470:	83 e4 f0             	and    $0xfffffff0,%esp
+ 8048473:	83 ec 20             	sub    $0x20,%esp
+ 8048476:	c7 44 24 18 ff ff ff 	movl   $0xffffffff,0x18(%esp)
+ 804847d:	ff 
+ 804847e:	c7 04 24 c0 85 04 08 	movl   $0x80485c0,(%esp)
+ 8048485:	e8 a6 fe ff ff       	call   8048330 <printf@plt>
+ 804848a:	c7 44 24 04 2c a0 04 	movl   $0x804a02c,0x4(%esp)
+ 8048491:	08 
+ 8048492:	c7 04 24 d2 85 04 08 	movl   $0x80485d2,(%esp)
+ 8048499:	e8 c2 fe ff ff       	call   8048360 <__isoc99_scanf@plt>
+ 804849e:	89 44 24 1c          	mov    %eax,0x1c(%esp)
+ 80484a2:	a1 2c a0 04 08       	mov    0x804a02c,%eax
+ 80484a7:	89 04 24             	mov    %eax,(%esp)
+ 80484aa:	e8 3b 00 00 00       	call   80484ea <forloop>
+ 80484af:	a3 24 a0 04 08       	mov    %eax,0x804a024
+ 80484b4:	a1 24 a0 04 08       	mov    0x804a024,%eax
+ 80484b9:	89 04 24             	mov    %eax,(%esp)
+ 80484bc:	e8 29 00 00 00       	call   80484ea <forloop>
+ 80484c1:	8b 15 24 a0 04 08    	mov    0x804a024,%edx
+ 80484c7:	01 d0                	add    %edx,%eax
+ 80484c9:	a3 24 a0 04 08       	mov    %eax,0x804a024
+ 80484ce:	a1 24 a0 04 08       	mov    0x804a024,%eax
+ 80484d3:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 80484d7:	c7 04 24 d5 85 04 08 	movl   $0x80485d5,(%esp)
+ 80484de:	e8 4d fe ff ff       	call   8048330 <printf@plt>
+ 80484e3:	b8 00 00 00 00       	mov    $0x0,%eax
+ 80484e8:	c9                   	leave  
+ 80484e9:	c3                   	ret    
+
+080484ea <forloop>:
+ 80484ea:	55                   	push   %ebp
+ 80484eb:	89 e5                	mov    %esp,%ebp
+ 80484ed:	83 ec 10             	sub    $0x10,%esp
+ 80484f0:	c7 45 f8 ff ff ff ff 	movl   $0xffffffff,-0x8(%ebp)
+ 80484f7:	a1 24 a0 04 08       	mov    0x804a024,%eax
+ 80484fc:	89 45 fc             	mov    %eax,-0x4(%ebp)
+ 80484ff:	c7 45 f8 05 00 00 00 	movl   $0x5,-0x8(%ebp)
+ 8048506:	eb 0d                	jmp    8048515 <forloop+0x2b>
+ 8048508:	8b 45 f8             	mov    -0x8(%ebp),%eax
+ 804850b:	83 e8 02             	sub    $0x2,%eax
+ 804850e:	01 45 fc             	add    %eax,-0x4(%ebp)
+ 8048511:	83 45 f8 02          	addl   $0x2,-0x8(%ebp)
+ 8048515:	8b 45 f8             	mov    -0x8(%ebp),%eax
+ 8048518:	3b 45 08             	cmp    0x8(%ebp),%eax
+ 804851b:	7e eb                	jle    8048508 <forloop+0x1e>
+ 804851d:	8b 45 fc             	mov    -0x4(%ebp),%eax
+ 8048520:	c9                   	leave  
+ 8048521:	c3                   	ret    

@@ -1,0 +1,48 @@
+                      | # Execution begins at address 0
+  0x000:              | 	.pos 0
+  0x000: 30f400020000 | init:	irmovl Stack, %esp  	# Set up Stack pointer
+  0x006: 30f500020000 | 	irmovl Stack, %ebp  	# Set up base pointer
+  0x00c: 8012000000   | 	call Main		# Execute main program
+  0x011: 00           | 	halt
+                      | 
+  0x012: a05f         | Main:	pushl %ebp
+  0x014: 2045         | 	rrmovl %esp, %ebp
+  0x016: 30f004000000 | 	irmovl $4,%eax
+  0x01c: a00f         | 	pushl %eax	# Push 4
+  0x01e: 30f200010000 | 	irmovl array,%edx
+  0x024: a02f         | 	pushl %edx      # Push array
+  0x026: 8030000000   | 	call Sum	# Sum(array, 4)
+  0x02b: 2054         | 	rrmovl %ebp,%esp
+  0x02d: b05f         | 	popl %ebp
+  0x02f: 90           | 	ret
+                      | 
+                      | 	# int Sum(int *Start, int Count)
+  0x030: a05f         | Sum:	pushl %ebp
+  0x032: 2045         | 	rrmovl %esp,%ebp
+  0x034: 501508000000 | 	mrmovl 8(%ebp),%ecx
+  0x03a: 50250c000000 | 	mrmovl 12(%ebp),%edx
+  0x040: 6300         | 	xorl %eax,%eax
+  0x042: 6222         | 	andl %edx,%edx
+  0x044: 7366000000   | 	je End
+                      | 
+  0x049: 506100000000 | Loop:	mrmovl (%ecx),%esi
+  0x04f: 6060         | 	addl %esi,%eax
+  0x051: 30f304000000 | 	irmovl $4,%ebx
+  0x057: 6031         | 	addl %ebx,%ecx
+  0x059: 30f3ffffffff | 	irmovl $-1,%ebx
+  0x05f: 6032         | 	addl %ebx,%edx
+  0x061: 7449000000   | 	jne Loop
+                      | 
+  0x066: 2054         | End:	rrmovl %ebp,%esp
+  0x068: b05f         | 	popl %ebp
+  0x06a: 90           | 	ret
+                      | 	
+  0x100:              | 	.pos 0x100
+                      | 	# Array of 4 elements
+  0x100: 0d000000     | array:	.long 0xd
+  0x104: c0000000     | 	.long 0xc0
+  0x108: 000b0000     | 	.long 0xb00
+  0x10c: 00a00000     | 	.long 0xa000
+                      | 
+  0x200:              | 	.pos 0x200
+  0x200:              | Stack:	# The stack goes here

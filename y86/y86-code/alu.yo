@@ -1,0 +1,11 @@
+  0x000: 30f3a1000000 | 	irmovl $0xa1,%ebx
+  0x006: 30f100bb0000 | 	irmovl $0xbb00, %ecx
+  0x00c: 30f3a2000000 | 	irmovl $0xa2,%ebx
+  0x012: 30f3a3000000 | 	irmovl $0xa3,%ebx
+  0x018: 6031         | 	addl %ebx,%ecx
+  0x01a: 401664000000 | 	rmmovl %ecx,100(%esi)
+  0x020: 30f014030000 | 	irmovl $0x314,%eax
+  0x026: 10           | 	nop
+  0x027: 10           | 	nop
+  0x028: 00           | 	halt
+                      | 

@@ -1,0 +1,26 @@
+#Initial code
+.pos 0
+	
+	irmovl	$5,%eax
+	irmovl  $7,%ebx
+	addl	%ebx,%eax
+	rrmovl  %eax,%ebx
+	rmmovl	%eax,4(%esi)
+	mrmovl  4(%esi),%ebx
+	jmp     0x27
+	irmovl	$2,%eax
+	irmovl  $7,%ebx
+	irmovl	$5,%eax
+	cmovle 	%eax,%ebx
+        rrmovl  %eax,%edx
+	pushl   %edx
+
+	halt
+
+	.align 4
+result1:
+	.long	0
+	.long	0
+	
+.pos 0x100
+Stack:
